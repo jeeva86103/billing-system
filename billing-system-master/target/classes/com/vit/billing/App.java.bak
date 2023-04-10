@@ -1,0 +1,167 @@
+package com.vit.billing;
+
+/**
+ * Hello world!
+ *
+ */
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+import java.time.format.DateTimeFormatter;
+import java.awt.Color;
+import java.time.LocalDateTime;
+import java.awt.font;
+import javax.swing.border.Border;
+
+public class App {
+    public static void main(String args[]) {
+        JFrame f1 = new JFrame("Login page");
+        JLabel la1 = new JLabel("Username");
+        la1.setBounds(20, 20, 80, 30);
+        JLabel la2 = new JLabel("Password");
+        la2.setBounds(20, 75, 100, 40);
+        JTextField text = new JTextField();
+        text.setBounds(100, 20, 100, 30);
+        JPasswordField value = new JPasswordField();
+        value.setBounds(100, 75, 100, 30);
+        JButton b = new JButton("Login");
+        b.setBounds(100, 120, 80, 30);
+        f1.add(la1);
+        f1.add(text);
+        f1.add(la2);
+        f1.add(value);
+        f1.add(b);
+        f1.setSize(400, 400);
+        f1.setBackground(Color.gray);
+        f1.setLayout(null);
+        f1.setVisible(true);
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JFrame fr1 = new JFrame("Home page");
+                JLabel lab1 = new JLabel("Welcome to home page");
+                lab1.setBounds(20, 20, 200, 30);
+                JButton bu1 = new JButton("Invoice");
+                bu1.setBounds(100, 100, 200, 30);
+                JButton bu2 = new JButton("Inventory");
+                bu2.setBounds(100, 140, 200, 30);
+                fr1.add(lab1);
+                fr1.add(bu1);
+                fr1.add(bu2);
+                fr1.setSize(400, 400);
+                fr1.setLayout(null);
+                fr1.setVisible(true);
+                bu1.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                        LocalDateTime now = LocalDateTime.now();
+                        JFrame f = new JFrame("INVOICE");
+                        Border blackline = BorderFactory.createLineBorder(Color.black);
+                        JPanel panel = new JPanel();
+                        JPanel panel1 = new JPanel();
+                        JButton b1;
+                        JCheckBox cb1, cb2, cb3, cb4, cb5;
+
+                        panel.setBounds(100, 175, 200, 120);
+                        panel.setBackground(Color.white);
+                        panel.setBorder(blackline);
+                        panel1.setBounds(120, 360, 600, 75);
+                        panel1.setBackground(Color.white);
+                        JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11;
+                        JTextField t1, t2, t3, t4, t5, t6;
+                        l1 = new JLabel("ABC DEPARTMENTAL STORE");
+                        l1.setBounds(250, 25, 300, 30);
+                        l1.setFont(new Font("Verdana", Font.PLAIN, 20));
+                        l2 = new JLabel("Chennai-600028");
+                        l2.setBounds(290, 50, 200, 30);
+                        l2.setFont(new Font("Verdana", Font.PLAIN, 20));
+                        l3 = new JLabel("Bill no:");
+                        l3.setBounds(570, 75, 300, 30);
+                        t1 = new JTextField();
+                        t1.setBounds(620, 80, 50, 20);
+                        t2 = new JTextField();
+                        t2.setBounds(570, 185, 50, 20);
+                        t3 = new JTextField();
+                        t3.setBounds(570, 215, 50, 20);
+                        t4 = new JTextField();
+                        t4.setBounds(570, 245, 50, 20);
+                        t5 = new JTextField();
+                        t5.setBounds(570, 275, 50, 20);
+                        t6 = new JTextField();
+                        t6.setBounds(570, 305, 50, 20);
+                        l4 = new JLabel("Date and Time:" + dtf.format(now));
+                        l4.setBounds(570, 95, 300, 30);
+                        l5 = new JLabel("PRODUCT ITEMS");
+                        l5.setBounds(105, 150, 300, 30);
+                        l6 = new JLabel("QUANTITY IN KG:");
+                        l6.setBounds(500, 150, 300, 30);
+                        l7 = new JLabel("wheat:");
+                        l7.setBounds(520, 180, 300, 30);
+                        l8 = new JLabel("rice:");
+                        l8.setBounds(520, 210, 300, 30);
+                        l9 = new JLabel("sugar:");
+                        l9.setBounds(520, 240, 300, 30);
+                        l10 = new JLabel("oil:");
+                        l10.setBounds(520, 270, 300, 30);
+                        l11 = new JLabel("cereals:");
+                        l11.setBounds(520, 300, 300, 30);
+                        l6.setFont(new Font("Verdana", Font.PLAIN, 16));
+                        cb1 = new JCheckBox("WHEAT");
+                        cb1.setBounds(100, 100, 150, 20);
+                        cb2 = new JCheckBox("RICE");
+                        cb2.setBounds(100, 150, 150, 20);
+                        cb3 = new JCheckBox("SUGAR");
+                        cb3.setBounds(100, 250, 150, 20);
+                        cb4 = new JCheckBox("OIL");
+                        cb4.setBounds(100, 300, 150, 20);
+                        cb5 = new JCheckBox("CEREALS");
+                        cb5.setBounds(100, 350, 150, 20);
+                        b1 = new JButton("Generate");
+                        b1.setBounds(100, 250, 80, 30);
+                        panel.add(cb1);
+                        panel.add(cb2);
+                        panel.add(cb3);
+                        panel.add(cb4);
+                        panel.add(cb5);
+                        panel.add(b1);
+                        String data[][] = { { "101", "wheat", "670000", "90", "100" },
+                                { "102", "rice", "780000", "20", "50" }, { "103", "sugar", "700000", "15", "20" } };
+                        String column[] = { "Product ID", "Produt NAME", "QUANTITY", "rate", "amount" };
+                        JTable jt = new JTable(data, column);
+                        jt.setBounds(30, 40, 600, 50);
+                        JScrollPane sp = new JScrollPane(jt);
+                        sp.setBorder(blackline);
+                        panel1.add(sp);
+
+                        f.add(l1);
+                        f.add(l2);
+                        f.add(l3);
+                        f.add(l4);
+                        f.add(t1);
+                        f.add(panel);
+                        f.add(l5);
+                        f.add(panel1);
+                        f.add(l6);
+                        f.add(l7);
+                        f.add(t2);
+                        f.add(l8);
+                        f.add(t3);
+                        f.add(l9);
+                        f.add(l10);
+                        f.add(l11);
+                        f.add(t4);
+                        f.add(t5);
+                        f.add(t6);
+                        f.setSize(850, 700);
+                        f.setLayout(null);
+
+                        f.setVisible(true);
+                        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+                    }
+                });
+            }
+        });
+
+    }
+}
